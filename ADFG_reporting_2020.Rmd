@@ -28,6 +28,7 @@ This script will take raw "tall" data, from multiple parent sources if necessary
 ```{r libraries}
 library(dplyr)
 library(tidyr)
+library(readxl)
 ```
 
 
@@ -39,18 +40,31 @@ site <- read.csv("../APECS Master repository/APECS Master repo/ALL_DATA/Site_met
 # Eelgrass Biometrics (lab data)
 eg.bio <- read.csv("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/Eelgrass_biomatrics_2019.csv", stringsAsFactors = FALSE, header = TRUE)
 # Habitat data
+hab_quad <- read_xlsx("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/Habitat_2019_RAW_2-5-2020.xlsx", sheet = 1)
+hab_plant_lng <- read_xlsx("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/Habitat_2019_RAW_2-5-2020.xlsx", sheet = 2)
+hab_plant_biom <- read_xlsx("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/Habitat_2019_RAW_2-5-2020.xlsx", sheet = 3)
 # Eelgrass wasting disease
 # Crab Pot
 crab.dat <- read.csv("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/crab_data_2019.csv", header = TRUE, stringsAsFactors = FALSE)
 # Beach Seine
 fish.dat <- read.csv("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/FishSeine_2019_RAW_10-4-19.csv", stringsAsFactors = FALSE, header = TRUE)
 fish.dat$unmeasured <- as.numeric(fish.dat$unmeasured)
+
 ```
 
-Site info
+## Site info
+Subset by the sites surveyed in 2019
 ```{r}
 site_meta <- site %>%
   subset(site_2019 %in% fish.dat$site)
+```
+
+## Kelp biomass
+THIS IS BROKEN FIX THIS
+```{r}
+# join by quadratID 
+kelp_biom <- left_join(hab_plant_biom, hab_quad, by = "quadrat_ID") %>%
+  dplyr::select(species_by_quadrat_ID:habitat)
 ```
 
 
@@ -90,6 +104,20 @@ colnames(graz)[4] <- "count"
 
 ## Crabs
 This data will come from the crab pot data. We also caught fish in pots so that will be extracted here and added to fish data later.
+
+First you should check the place_names and make sure that it is consistent with what is on the site_metadata. Convert to universal name and then convert back
+```{r}
+site_crab <- unite(site, universal_code, bay_code:bay_sample, sep = "_", remove = FALSE)
+crab.dat2 <- crab.dat %>%
+  unite(universal_code, bay_code:bay_sample, sep ="_", remove = FALSE) %>%
+  left_join(site_crab, by = c("universal_code", "bay_code", "bay_sample")) %>%
+  dplyr::select(-c(siteID_NOAA:site_2019)) %>%
+  dplyr::select(-c(study:general_description)) %>%
+  mutate(place_name = place_name.y) %>%
+  dplyr::select(-c(place_name.x, place_name.y))
+```
+
+
 ```{r n crabs}
 ## Crabs from pots ##
 crab <- data.frame(
