@@ -1,0 +1,184 @@
+---
+title: "ADFG_report_2020"
+author: "Lia Domke"
+date: "2/20/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+For our ADFG permit it requires report the number of each species that were collected during that reporting year. 
+
+Species groups we collected in 2020:
+1. fish species - seine
+2. invertebrate species - seine
+3. crabs - pots
+4. eelgrass - habitat 
+5. eelgrass - eelgrass wasting disease
+6. 
+7. kelp - habitat
+8. 
+
+Based on WR script 
+
+# Alaska Department of Fish and Game Fisheries Resource permit reporting
+This script will take raw "tall" data, from multiple parent sources if necessary, and format it for the FRP reporting form.
+```{r libraries}
+library(dplyr)
+library(tidyr)
+```
+
+
+## Data
+```{r data}
+# Eelgrass Site
+site <- read.csv("../APECS Master repository/APECS Master repo/ALL_DATA/Site_metadata_allyears.csv", header = TRUE,
+                 stringsAsFactors = FALSE)
+# Eelgrass Biometrics (lab data)
+eg.bio <- read.csv("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/Eelgrass_biomatrics_2019.csv", stringsAsFactors = FALSE, header = TRUE)
+# Habitat data
+# Eelgrass wasting disease
+# Crab Pot
+crab.dat <- read.csv("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/crab_data_2019.csv", header = TRUE, stringsAsFactors = FALSE)
+# Beach Seine
+fish.dat <- read.csv("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/FishSeine_2019_RAW_10-4-19.csv", stringsAsFactors = FALSE, header = TRUE)
+fish.dat$unmeasured <- as.numeric(fish.dat$unmeasured)
+```
+
+Site info
+```{r}
+site_meta <- site %>%
+  subset(site_2019 %in% fish.dat$site)
+```
+
+
+## Eelgrass
+Our protocol for eelgrass collections for HABITAT data included 15 shoots at 5 quadrats at all eelgrass sites (20 sites)
+for a total of 1500 shoots
+```{r n eelgrass}
+# get right site info
+site.eg <- site %>%
+  filter(habitat == "eelgrass") %>%
+  subset(site_2019 %in% fish.dat$site)
+
+eg <- data.frame("site" = unique(site.eg$site_2019), "sp" = rep("Zostera_marina", 20), "collection_method" = "hand", "count" = 75)
+```
+
+## Grazers - small inverts
+This will come from the biometrics data
+```{r n grazers}
+## Summarise ##
+graz <- data.frame(
+  eg.bio %>% 
+    group_by(place_name) %>% 
+    summarise(Idothea_rascata = sum(idotea_count, na.rm = TRUE),
+              Gammarid_amphipod = sum(amphipod_count, na.rm = TRUE),
+              Caprella_alaskana = sum(caprellid_count, na.rm = TRUE),
+              Lottia_sp = sum(limpet_count, na.rm = TRUE),
+              Littorina_sp = sum(gastropod_count, na.rm = TRUE),) %>%
+    mutate(site = place_name) %>%
+    dplyr::select(-place_name)
+  )
+## Convert to tall ##
+graz <- gather(graz, sp, count, Idothea_rascata:Littorina_sp)
+## Add colelction method ##
+graz <- data.frame(graz[,1:2], "collection_method" = "hand", graz[,3])
+colnames(graz)[4] <- "count"
+```
+
+## Crabs
+This data will come from the crab pot data. We also caught fish in pots so that will be extracted here and added to fish data later.
+```{r n crabs}
+## Crabs from pots ##
+crab <- data.frame(
+  crab.dat %>% 
+    filter(taxa == "Decapoda") %>% 
+    group_by(place_name, Sp_ScientificName) %>% 
+    summarise(n = n()) %>%
+    mutate(site = place_name) %>%
+    mutate(species_scientific = Sp_ScientificName) %>%
+    ungroup() %>%
+    dplyr::select(-c(place_name, Sp_ScientificName))
+)
+## Fish from pots ##
+fish.crab <- data.frame(
+  crab.dat %>% 
+    filter(taxa == "Vertebrata") %>% 
+    group_by(place_name, Sp_ScientificName) %>% 
+    summarise(n = n()) %>%
+    mutate(site = place_name) %>%
+    mutate(species_scientific = Sp_ScientificName) %>%
+    ungroup() %>%
+    dplyr::select(-c(place_name, Sp_ScientificName))
+)
+```
+
+## Fish
+This data will come from the beach seine data. We also caught crabs in the beach seine so that will be extracted here and added to the crab derived above.
+```{r n fish}
+fish.dat$abundance <- as.numeric(ifelse(is.na(fish.dat$fork_length), paste(fish.dat$unmeasured), 1))
+
+fish.sum <- fish.dat %>%
+  filter(taxon == "fish") %>%
+  group_by(site, species_scientific) %>%
+  dplyr::summarise(total = sum(abundance))
+
+## Fish from seine ##
+fish <- data.frame(
+  fish.sum %>%
+    group_by(site, species_scientific) %>% 
+    summarise(n = sum(total))
+)
+## Crabs from seine ##
+crab.fish <- data.frame(
+  fish.dat %>%
+    filter(taxon == "invertebrate") %>% 
+    group_by(site, species_scientific) %>% 
+    summarise(n = n())
+)
+```
+
+## Bring it all together now
+Get all the summaries above into one nice happy table! Including site identifier information.
+```{r}
+## All the crabs ##
+crab$collection_method <- "crab pot"
+crab.fish$collection_method <- "beach seine"
+crab <- bind_rows(crab.fish, crab)
+crab[is.na(crab)] <- 0
+crab[crab == ""] <- "Decapoda"
+colnames(crab)[2] <- "sp"
+colnames(crab)[3] <- "count"
+## All the fish ##
+fish.crab$collection_method <- "crab pot"
+fish$collection_method <- "beach seine"
+fish <- bind_rows(fish, fish.crab)
+fish[is.na(fish)] <- 0
+colnames(fish)[2] <- "sp"
+colnames(fish)[3] <- "count"
+## Final Combine ##
+dat <- site_meta %>%
+  mutate(site = site_2019) %>%
+  dplyr::select(c(site, latitude, longitude))
+  
+counts <- bind_rows(crab, fish, eg, graz)
+dat <- merge(dat, counts, by = "site", all = TRUE)
+dat$Life_stage <- "adult/non-larval juveniles"
+
+## Just group by species ##
+#sp <- dat %>% 
+ # group_by(sp) %>% 
+# summarise(total = sum(Count))
+## Just fish for IACUC ##
+#fish.sp <- fish %>% 
+ # group_by(sp) %>% 
+  #summarise(total = sum(count))
+#fish.sp$total_retained <- 0
+```
+
+## Export
+```{r}
+write.csv(dat, "ADFG_collections_CF_17_050.csv", row.names = FALSE)
+write.csv(fish.sp, "../../IACUC/IACUC_collections_2017.csv", row.names = FALSE)
