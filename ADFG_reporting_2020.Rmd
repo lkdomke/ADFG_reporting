@@ -15,11 +15,10 @@ Species groups we collected in 2020:
 1. fish species - seine
 2. invertebrate species - seine
 3. crabs - pots
-4. eelgrass - habitat 
-5. eelgrass - eelgrass wasting disease
-6. 
+4. fish - pots
+5. eelgrass - habitat 
+6. eelgrass - eelgrass wasting disease
 7. kelp - habitat
-8. 
 
 Based on WR script 
 
@@ -38,33 +37,61 @@ library(readxl)
 site <- read.csv("../APECS Master repository/APECS Master repo/ALL_DATA/Site_metadata_allyears.csv", header = TRUE,
                  stringsAsFactors = FALSE)
 # Eelgrass Biometrics (lab data)
-eg.bio <- read.csv("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/Eelgrass_biomatrics_2019.csv", stringsAsFactors = FALSE, header = TRUE)
+eg.bio <- read.csv("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/Eelgrass_biomatrics_2019.csv",
+                   stringsAsFactors = FALSE, header = TRUE)
 # Habitat data
-hab_quad <- read_xlsx("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/Habitat_2019_RAW_2-5-2020.xlsx", sheet = 1)
-hab_plant_lng <- read_xlsx("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/Habitat_2019_RAW_2-5-2020.xlsx", sheet = 2)
-hab_plant_biom <- read_xlsx("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/Habitat_2019_RAW_2-5-2020.xlsx", sheet = 3)
+hab_quad <- read_xlsx("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/Habitat_2019_RAW_2-21-2020.xlsx", 
+                      sheet = 1)
+hab_plant_lng <- read_xlsx("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/Habitat_2019_RAW_2-21-2020.xlsx",
+                           sheet = 2)
+hab_plant_biom <- read_xlsx("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/Habitat_2019_RAW_2-21-2020.xlsx",
+                            sheet = 3)
 # Eelgrass wasting disease
 # Crab Pot
-crab.dat <- read.csv("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/crab_data_2019.csv", header = TRUE, stringsAsFactors = FALSE)
+crab.dat <- read.csv("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/crab_data_2019.csv", 
+                     header = TRUE, stringsAsFactors = FALSE)
 # Beach Seine
-fish.dat <- read.csv("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/FishSeine_2019_RAW_10-4-19.csv", stringsAsFactors = FALSE, header = TRUE)
-fish.dat$unmeasured <- as.numeric(fish.dat$unmeasured)
+fish.dat <- read.csv("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/FishSeine_2019_RAW_10-4-19.csv",
+                     stringsAsFactors = FALSE, header = TRUE)
 
+fish.dat$unmeasured <- as.numeric(fish.dat$unmeasured)
 ```
 
 ## Site info
 Subset by the sites surveyed in 2019
 ```{r}
-site_meta <- site %>%
-  subset(site_2019 %in% fish.dat$site)
+site.19 <- site %>%
+  subset(site_2019 %in% fish.dat$site) %>%
+  unite(universal_code, bay_code:bay_sample, sep = "_", remove = FALSE)
+
+site <- site %>%
+  unite(universal_code, bay_code:bay_sample, sep = "_", remove = FALSE)
 ```
 
 ## Kelp biomass
-THIS IS BROKEN FIX THIS
+
 ```{r}
+# adjust sites names so that we can convert to universal code
+hab_quad$site <- as.factor(hab_quad$site)
+levels(hab_quad$site)[levels(hab_quad$site)=="North Fish Egg - kelp"] <- "North Fish Egg-Kelp"
+levels(hab_quad$site)[levels(hab_quad$site)=="Baker Island - kelp"] <- "Baker Island - kelp "
+unique(hab_quad$site)
 # join by quadratID 
 kelp_biom <- left_join(hab_plant_biom, hab_quad, by = "quadrat_ID") %>%
-  dplyr::select(species_by_quadrat_ID:habitat)
+  dplyr::select(species_by_quadrat_ID:habitat) %>%
+  left_join(site.19, by = c("site" = "site_2019")) %>%
+  select(c(site, universal_code, species, weight))
+  
+kelp_sum <- kelp_biom %>%
+  group_by(universal_code, site, species) %>%
+  dplyr::summarise(weight_g = sum(weight)) %>%
+  mutate(sp = species) %>%
+  ungroup() %>%
+  dplyr::select(c(sp, universal_code, weight_g, site))
+
+kelp_sum$collection_method <- "hand"
+
+kelp <- kelp_sum
 ```
 
 
@@ -73,12 +100,20 @@ Our protocol for eelgrass collections for HABITAT data included 15 shoots at 5 q
 for a total of 1500 shoots
 ```{r n eelgrass}
 # get right site info
-site.eg <- site %>%
+site.eg <- site.19 %>%
   filter(habitat == "eelgrass") %>%
-  subset(site_2019 %in% fish.dat$site)
+  subset(site_2019 %in% fish.dat$site) 
 
-eg <- data.frame("site" = unique(site.eg$site_2019), "sp" = rep("Zostera_marina", 20), "collection_method" = "hand", "count" = 75)
+eg <- data.frame("site" = unique(site.eg$site_2019), "sp" = rep("Zostera_marina", 20), "collection_method" = "hand", "count" = 75, "universal_code" = unique(site.eg$universal_code))
 ```
+ 
+## Eelgrass wasting disease
+At 5 sites 132 shoots were taken, at the 6th site only 120 were taken
+```{r}
+waste.site <- c("NATZ_A", "GUKT_A", "NFEI_A", "NOSK_A", "REFU_A", "SHIN_A")
+eg.waste <- data.frame("site" = waste.site, sp = rep("Zostera_marina", 5), "collection_method" = "hand", "count" = 132)
+```
+
 
 ## Grazers - small inverts
 This will come from the biometrics data
@@ -91,15 +126,17 @@ graz <- data.frame(
               Gammarid_amphipod = sum(amphipod_count, na.rm = TRUE),
               Caprella_alaskana = sum(caprellid_count, na.rm = TRUE),
               Lottia_sp = sum(limpet_count, na.rm = TRUE),
-              Littorina_sp = sum(gastropod_count, na.rm = TRUE),) %>%
+              Littorina_sp = sum(gastropod_count, na.rm = TRUE)) %>%
     mutate(site = place_name) %>%
-    dplyr::select(-place_name)
+    dplyr::select(-c(place_name))
   )
 ## Convert to tall ##
-graz <- gather(graz, sp, count, Idothea_rascata:Littorina_sp)
+graz <- gather(graz, sp, count, Idothea_rascata:Littorina_sp) %>%
+  left_join(site.eg, by = c("site" = "place_name")) %>%
+  dplyr::select(c(site, sp, count, universal_code))
 ## Add colelction method ##
-graz <- data.frame(graz[,1:2], "collection_method" = "hand", graz[,3])
-colnames(graz)[4] <- "count"
+graz$collection_method <- "hand"
+colnames(graz)[3] <- "count"
 ```
 
 ## Crabs
@@ -107,37 +144,35 @@ This data will come from the crab pot data. We also caught fish in pots so that 
 
 First you should check the place_names and make sure that it is consistent with what is on the site_metadata. Convert to universal name and then convert back
 ```{r}
-site_crab <- unite(site, universal_code, bay_code:bay_sample, sep = "_", remove = FALSE)
 crab.dat2 <- crab.dat %>%
   unite(universal_code, bay_code:bay_sample, sep ="_", remove = FALSE) %>%
-  left_join(site_crab, by = c("universal_code", "bay_code", "bay_sample")) %>%
-  dplyr::select(-c(siteID_NOAA:site_2019)) %>%
-  dplyr::select(-c(study:general_description)) %>%
-  mutate(place_name = place_name.y) %>%
-  dplyr::select(-c(place_name.x, place_name.y))
+  left_join(site, by = c("universal_code")) %>%
+  mutate(place_name = place_name.x) %>%
+  dplyr::select(c(universal_code, Sp_ScientificName, taxa, place_name))
 ```
 
 
 ```{r n crabs}
 ## Crabs from pots ##
 crab <- data.frame(
-  crab.dat %>% 
+  crab.dat2 %>% 
     filter(taxa == "Decapoda") %>% 
-    group_by(place_name, Sp_ScientificName) %>% 
-    summarise(n = n()) %>%
+    group_by(place_name, Sp_ScientificName, universal_code) %>% 
+    summarise(count = n()) %>%
     mutate(site = place_name) %>%
-    mutate(species_scientific = Sp_ScientificName) %>%
+    mutate(sp = Sp_ScientificName) %>%
     ungroup() %>%
     dplyr::select(-c(place_name, Sp_ScientificName))
 )
+
 ## Fish from pots ##
 fish.crab <- data.frame(
-  crab.dat %>% 
+  crab.dat2 %>% 
     filter(taxa == "Vertebrata") %>% 
-    group_by(place_name, Sp_ScientificName) %>% 
-    summarise(n = n()) %>%
+    group_by(place_name, Sp_ScientificName, universal_code) %>% 
+    summarise(count = n()) %>%
     mutate(site = place_name) %>%
-    mutate(species_scientific = Sp_ScientificName) %>%
+    mutate(sp = Sp_ScientificName) %>%
     ungroup() %>%
     dplyr::select(-c(place_name, Sp_ScientificName))
 )
@@ -148,23 +183,28 @@ This data will come from the beach seine data. We also caught crabs in the beach
 ```{r n fish}
 fish.dat$abundance <- as.numeric(ifelse(is.na(fish.dat$fork_length), paste(fish.dat$unmeasured), 1))
 
+## Fish from seine ##
 fish.sum <- fish.dat %>%
   filter(taxon == "fish") %>%
-  group_by(site, species_scientific) %>%
-  dplyr::summarise(total = sum(abundance))
+  left_join(site, by = c("site" = "site_2019")) %>%
+  unite(universal_code, bay_code:bay_sample) %>%
+  group_by(site, species_scientific, universal_code) %>%
+  dplyr::summarise(count = sum(abundance)) %>%
+  mutate(sp = species_scientific) %>%
+  dplyr::select(-species_scientific)
 
-## Fish from seine ##
-fish <- data.frame(
-  fish.sum %>%
-    group_by(site, species_scientific) %>% 
-    summarise(n = sum(total))
-)
+
 ## Crabs from seine ##
 crab.fish <- data.frame(
   fish.dat %>%
     filter(taxon == "invertebrate") %>% 
-    group_by(site, species_scientific) %>% 
-    summarise(n = n())
+    left_join(site, by = c("site" = "site_2019")) %>%
+    unite(universal_code, bay_code:bay_sample) %>%
+    group_by(site, species_scientific, universal_code) %>% 
+    summarise(count = n()) %>%
+    ungroup() %>%
+    mutate(sp = species_scientific) %>%
+    dplyr::select(-species_scientific)
 )
 ```
 
@@ -177,22 +217,21 @@ crab.fish$collection_method <- "beach seine"
 crab <- bind_rows(crab.fish, crab)
 crab[is.na(crab)] <- 0
 crab[crab == ""] <- "Decapoda"
-colnames(crab)[2] <- "sp"
-colnames(crab)[3] <- "count"
 ## All the fish ##
 fish.crab$collection_method <- "crab pot"
-fish$collection_method <- "beach seine"
-fish <- bind_rows(fish, fish.crab)
+fish.sum$collection_method <- "beach seine"
+fish <- bind_rows(fish.sum, fish.crab) %>%
+  ungroup() %>%
+  dplyr::select(-c(species_scientific))
 fish[is.na(fish)] <- 0
-colnames(fish)[2] <- "sp"
-colnames(fish)[3] <- "count"
 ## Final Combine ##
-dat <- site_meta %>%
-  mutate(site = site_2019) %>%
-  dplyr::select(c(site, latitude, longitude))
-  
+dat <- site %>%
+  dplyr::select(c(place_name, universal_code, latitude, longitude))
+
+
 counts <- bind_rows(crab, fish, eg, graz)
-dat <- merge(dat, counts, by = "site", all = TRUE)
+
+dat <- merge(dat, counts)
 dat$Life_stage <- "adult/non-larval juveniles"
 
 ## Just group by species ##
