@@ -28,6 +28,7 @@ This script will take raw "tall" data, from multiple parent sources if necessary
 library(dplyr)
 library(tidyr)
 library(readxl)
+library(lubridate)
 ```
 
 
@@ -78,20 +79,21 @@ levels(hab_quad$site)[levels(hab_quad$site)=="Baker Island - kelp"] <- "Baker Is
 unique(hab_quad$site)
 # join by quadratID 
 kelp_biom <- left_join(hab_plant_biom, hab_quad, by = "quadrat_ID") %>%
-  dplyr::select(species_by_quadrat_ID:habitat) %>%
+  dplyr::select(species_by_quadrat_ID:habitat, date) %>%
   left_join(site.19, by = c("site" = "site_2019")) %>%
-  select(c(site, universal_code, species, weight))
+  select(c(site, universal_code, species, weight, date))
   
 kelp_sum <- kelp_biom %>%
-  group_by(universal_code, site, species) %>%
+  group_by(universal_code, date, site, species) %>%
   dplyr::summarise(weight_g = sum(weight)) %>%
   mutate(sp = species) %>%
   ungroup() %>%
-  dplyr::select(c(sp, universal_code, weight_g, site))
+  dplyr::select(c(sp, universal_code, weight_g, site, date))
 
 kelp_sum$collection_method <- "hand"
 
 kelp <- kelp_sum
+kelp <- mutate(kelp, date = ymd(date))
 ```
 
 
@@ -104,14 +106,39 @@ site.eg <- site.19 %>%
   filter(habitat == "eelgrass") %>%
   subset(site_2019 %in% fish.dat$site) 
 
-eg <- data.frame("site" = unique(site.eg$site_2019), "sp" = rep("Zostera_marina", 20), "collection_method" = "hand", "count" = 75, "universal_code" = unique(site.eg$universal_code))
+eg <- data.frame("site" = unique(site.eg$site_2019), "sp" = rep("Zostera marina", 20), "collection_method" = "hand", "count" = 75, "universal_code" = unique(site.eg$universal_code))
+
+eg <- left_join(eg, hab_quad, by = "site") %>%
+  dplyr::select(site, sp, collection_method, count, universal_code, date) %>%
+  distinct()
+
+# fix dates
+eg[3, "date"] <- "2019-05-08"
+eg[5, "date"] <- "2019-05-22"
+eg[6, "date"] <- "2019-06-17"
+eg[7, "date"] <- "2019-05-18"
+eg[9, "date"] <- "2019-06-06"
+eg[11, "date"] <- "2019-06-16"
+eg[12, "date"] <- "2019-05-21"
+eg[13, "date"] <- "2019-05-23"
+eg[18, "date"] <- "2019-05-20"
+eg[20, "date"] <- "2019-05-10"
+
+eg$date <- as.Date(eg$date)
+
 ```
  
 ## Eelgrass wasting disease
 At 5 sites 132 shoots were taken, at the 6th site only 120 were taken
 ```{r}
-waste.site <- c("NATZ_A", "GUKT_A", "NFEI_A", "NOSK_A", "REFU_A", "SHIN_A")
-eg.waste <- data.frame("site" = waste.site, sp = rep("Zostera_marina", 5), "collection_method" = "hand", "count" = 132)
+waste.site <- c("NATZ_A", "GUKT_A", "NFEI_A", "REFU_A", "NOSK_A", "SHIN_A")
+waste.date <- c("2019-07-17", "2019-07-15", "2019-07-14", "2019-07-19", "2019-07-16","2019-07-18")
+eg.waste <- data.frame("site" = waste.site, "date" = waste.date, sp = rep("Zostera marina", 6), "collection_method" = "hand", "count" = 132)
+# fix site where we collected fewer eelgrass blades
+eg.waste[4,5] <- "120"
+
+eg.waste <- mutate(eg.waste, date = ymd(date))
+eg.waste$count <- as.numeric(eg.waste$count)
 ```
 
 
@@ -119,21 +146,27 @@ eg.waste <- data.frame("site" = waste.site, sp = rep("Zostera_marina", 5), "coll
 This will come from the biometrics data
 ```{r n grazers}
 ## Summarise ##
+eg.bio <- eg.bio %>%
+  mutate(date = mdy(collection_date))
+
 graz <- data.frame(
   eg.bio %>% 
-    group_by(place_name) %>% 
+    group_by(place_name, collection_date) %>% 
     summarise(Idothea_rascata = sum(idotea_count, na.rm = TRUE),
               Gammarid_amphipod = sum(amphipod_count, na.rm = TRUE),
               Caprella_alaskana = sum(caprellid_count, na.rm = TRUE),
               Lottia_sp = sum(limpet_count, na.rm = TRUE),
               Littorina_sp = sum(gastropod_count, na.rm = TRUE)) %>%
     mutate(site = place_name) %>%
-    dplyr::select(-c(place_name))
+    mutate(date = mdy(collection_date)) %>%
+    ungroup() %>%
+    dplyr::select(-c(place_name, collection_date))
   )
 ## Convert to tall ##
-graz <- gather(graz, sp, count, Idothea_rascata:Littorina_sp) %>%
+graz <- graz %>%
+  gather(sp, count, Idothea_rascata:Littorina_sp) %>%
   left_join(site.eg, by = c("site" = "place_name")) %>%
-  dplyr::select(c(site, sp, count, universal_code))
+  dplyr::select(c(site, sp, count, universal_code, date))
 ## Add colelction method ##
 graz$collection_method <- "hand"
 colnames(graz)[3] <- "count"
@@ -145,10 +178,11 @@ This data will come from the crab pot data. We also caught fish in pots so that 
 First you should check the place_names and make sure that it is consistent with what is on the site_metadata. Convert to universal name and then convert back
 ```{r}
 crab.dat2 <- crab.dat %>%
-  unite(universal_code, bay_code:bay_sample, sep ="_", remove = FALSE) %>%
-  left_join(site, by = c("universal_code")) %>%
+  unite(universal_code, bay_code:bay_sample) %>%
+  left_join(site, by = "universal_code") %>%
   mutate(place_name = place_name.x) %>%
-  dplyr::select(c(universal_code, Sp_ScientificName, taxa, place_name))
+  mutate(date = ymd(YYYYMMDD_pulled)) %>%
+  dplyr::select(c(universal_code, Sp_ScientificName, taxa, place_name, date))
 ```
 
 
@@ -157,7 +191,7 @@ crab.dat2 <- crab.dat %>%
 crab <- data.frame(
   crab.dat2 %>% 
     filter(taxa == "Decapoda") %>% 
-    group_by(place_name, Sp_ScientificName, universal_code) %>% 
+    group_by(place_name, Sp_ScientificName, universal_code, date) %>% 
     summarise(count = n()) %>%
     mutate(site = place_name) %>%
     mutate(sp = Sp_ScientificName) %>%
@@ -169,7 +203,7 @@ crab <- data.frame(
 fish.crab <- data.frame(
   crab.dat2 %>% 
     filter(taxa == "Vertebrata") %>% 
-    group_by(place_name, Sp_ScientificName, universal_code) %>% 
+    group_by(place_name, Sp_ScientificName, universal_code, date) %>% 
     summarise(count = n()) %>%
     mutate(site = place_name) %>%
     mutate(sp = Sp_ScientificName) %>%
@@ -188,8 +222,10 @@ fish.sum <- fish.dat %>%
   filter(taxon == "fish") %>%
   left_join(site, by = c("site" = "site_2019")) %>%
   unite(universal_code, bay_code:bay_sample) %>%
-  group_by(site, species_scientific, universal_code) %>%
+  mutate(date = mdy(date)) %>%
+  group_by(site, species_scientific, universal_code, date) %>%
   dplyr::summarise(count = sum(abundance)) %>%
+  ungroup() %>%
   mutate(sp = species_scientific) %>%
   dplyr::select(-species_scientific)
 
@@ -200,7 +236,8 @@ crab.fish <- data.frame(
     filter(taxon == "invertebrate") %>% 
     left_join(site, by = c("site" = "site_2019")) %>%
     unite(universal_code, bay_code:bay_sample) %>%
-    group_by(site, species_scientific, universal_code) %>% 
+    mutate(date = mdy(date)) %>%
+    group_by(site, species_scientific, universal_code, date) %>% 
     summarise(count = n()) %>%
     ungroup() %>%
     mutate(sp = species_scientific) %>%
@@ -215,29 +252,31 @@ Get all the summaries above into one nice happy table! Including site identifier
 crab$collection_method <- "crab pot"
 crab.fish$collection_method <- "beach seine"
 crab <- bind_rows(crab.fish, crab)
-crab[is.na(crab)] <- 0
-crab[crab == ""] <- "Decapoda"
 ## All the fish ##
 fish.crab$collection_method <- "crab pot"
 fish.sum$collection_method <- "beach seine"
-fish <- bind_rows(fish.sum, fish.crab) %>%
-  ungroup() %>%
-  dplyr::select(-c(species_scientific))
+fish <- bind_rows(fish.sum, fish.crab)
 fish[is.na(fish)] <- 0
 ## Final Combine ##
+
+
+counts <- bind_rows(crab, fish, eg, graz, eg.waste, kelp)
+
+sites_19 <- unique(counts$universal_code) 
+
 dat <- site %>%
-  dplyr::select(c(place_name, universal_code, latitude, longitude))
+  dplyr::select(c(place_name, universal_code, latitude, longitude)) %>%
+  subset(universal_code %in% sites_19)
+
+dat2 <- left_join(dat, counts)
+dat2$Life_stage <- "adult/non-larval juveniles"
 
 
-counts <- bind_rows(crab, fish, eg, graz)
-
-dat <- merge(dat, counts)
-dat$Life_stage <- "adult/non-larval juveniles"
 
 ## Just group by species ##
-#sp <- dat %>% 
- # group_by(sp) %>% 
-# summarise(total = sum(Count))
+sp <- dat2 %>% 
+ group_by(sp) %>% 
+summarise(total = sum(count), total_weight = sum(weight_g))
 ## Just fish for IACUC ##
 #fish.sp <- fish %>% 
  # group_by(sp) %>% 
@@ -247,5 +286,6 @@ dat$Life_stage <- "adult/non-larval juveniles"
 
 ## Export
 ```{r}
-write.csv(dat, "ADFG_collections_CF_17_050.csv", row.names = FALSE)
-write.csv(fish.sp, "../../IACUC/IACUC_collections_2017.csv", row.names = FALSE)
+write.csv(dat2, "Data/ADFG_collections_CF_19_067.csv", row.names = FALSE)
+#write.csv(fish.sp, "../../IACUC/IACUC_collections_2017.csv", row.names = FALSE)
+```
