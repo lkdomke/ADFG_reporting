@@ -1,0 +1,79 @@
+---
+title: "Kelp_sp_2020"
+author: "Lia Domke"
+date: "2/28/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+In 2019 we collected a lot of kelps that we didn't anticipate. In order to update our ADFG permit for 2020, lets create a csv with species names and approximate abundances based on how many kelp sites we'll have.
+
+1. read in data
+2. subset to just kelp data
+3. approximate biomass for 2020 sites based on 2019
+  Note that in 2019 we sampled 5 kelp sites and in 2020 we will sample 6 kelp sites
+
+# Libraries
+```{r message=TRUE}
+require(tidyverse)
+require(readxl)
+require(lubridate)
+```
+
+  
+# 1. Data
+```{r message=TRUE}
+hab_quad <- read_xlsx("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/Habitat_2019_RAW_2-21-2020.xlsx", 
+                      sheet = 1)
+hab_plant_lng <- read_xlsx("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/Habitat_2019_RAW_2-21-2020.xlsx",
+                           sheet = 2)
+hab_plant_biom <- read_xlsx("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/Habitat_2019_RAW_2-21-2020.xlsx",
+                            sheet = 3)
+site <- read.csv("../APECS Master repository/APECS Master repo/ALL_DATA/Site_metadata_allyears.csv", header = TRUE,
+                 stringsAsFactors = FALSE)
+```
+
+# 2. Kelp data
+```{r include=FALSE}
+# adjust sites names so that we can convert to universal code
+hab_quad$site <- as.factor(hab_quad$site)
+levels(hab_quad$site)[levels(hab_quad$site)=="North Fish Egg - kelp"] <- "North Fish Egg-Kelp"
+levels(hab_quad$site)[levels(hab_quad$site)=="Baker Island - kelp"] <- "Baker Island - kelp "
+unique(hab_quad$site)
+# join by quadratID 
+kelp_biom <- left_join(hab_plant_biom, hab_quad, by = "quadrat_ID") %>%
+  dplyr::select(species_by_quadrat_ID:habitat, date) %>%
+  left_join(site.19, by = c("site" = "site_2019")) %>%
+  select(c(site, universal_code, species, weight, date))
+  
+kelp_sum <- kelp_biom %>%
+  group_by(universal_code, date, site, species) %>%
+  dplyr::summarise(weight_g = sum(weight)) %>%
+  mutate(sp = species) %>%
+  ungroup() %>%
+  dplyr::select(c(sp, universal_code, weight_g, site, date))
+
+kelp_sum$collection_method <- "hand"
+
+kelp <- kelp_sum
+kelp <- mutate(kelp, date = ymd(date))
+```
+
+# 3 Approximate for 2020
+```{r}
+kelp_2020 <- kelp %>%
+  group_by(sp) %>%
+  dplyr::summarise(weight_g_sum = sum(weight_g)) %>%
+  mutate(weight_g_by_site = weight_g_sum/5) %>%
+  mutate(weight_g_2020 = weight_g_by_site*10) # overestimation of the 6 sites we intend on seining
+  
+```
+
+# Write out csv
+```{r}
+write.csv(kelp_2020, "Data/Kelp_sp_estimation_2020.csv")
+```
+
