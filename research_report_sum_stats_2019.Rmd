@@ -1,0 +1,121 @@
+---
+title: "research_report_sum_stats_2019"
+author: "Lia Domke"
+date: "6/24/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Interested in calculating summary statistics for the 2019 fish data for the 2019 research report. 
+
+```{r data}
+fish <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3A347cd81e-15a2-41f9-a73b-e344615548bf", method = "libcurl"), stringsAsFactors = FALSE, header = TRUE)
+
+# read in otter data from 2019
+otts <- read.csv("../APECS Master repository/APECS Master repo/ALL_DATA/Lia_fish/Otter_density_site_2019.csv", stringsAsFactors = FALSE,
+                 header = TRUE)
+
+# add in site names
+site_names <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3A87744ced-530b-4bae-809e-ff1012c7ae72", method = "libcurl"), stringsAsFactors = FALSE, header = TRUE)
+
+# add in derived site level eelgrass community biomass info
+eel <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3Aa2cf7ce5-ccea-4f65-8d30-e4f128fbd239", method = "libcurl"), stringsAsFactors = FALSE, header = TRUE)
+
+```
+
+```{r libraries}
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+```
+
+Summary statistics for all sites, average for all sties
+```{r}
+sum_stat <- fish %>%
+  unite(site_code, bay_code:bay_sample) %>%
+  group_by(site_code, habitat) %>%
+  dplyr::summarise(total = sum(mass_g)) %>%
+  mutate(total_kg = total/1000)
+
+sum_stat %>%
+  ungroup() %>%
+  group_by(site_code) %>%
+  dplyr::summarise(total_kg = sum(total_kg)) %>%
+  dplyr::summarise(avg = mean(total_kg))
+```
+
+Subset fish data to salmon only 
+
+```{r}
+sal <- fish %>%
+  filter(sp_code == "SALCHUM" | sp_code == "SALCOHO"| 
+      sp_code == "SALSOCK"| sp_code == "SALCHIN"| sp_code == "SALPINK") %>%
+  unite(site_code, bay_code:bay_sample) %>%
+  group_by(site_code, sp_code, species_scientific, habitat) %>%
+  dplyr::summarise(total = sum(mass_g))
+
+trimws(otts$site)
+anti_join(otts, site_names, by = c("site" = "site_2019")) # okay there are 8 sites that don't match, fix those
+otts$site <- as.factor(otts$site)
+glimpse(otts)
+levels(otts$site)[levels(otts$site)=="Chusini"] <- "Chusini-Kladein Flat"
+levels(otts$site)[levels(otts$site)=="Farallon Bay"] <- "Farallon"
+levels(otts$site)[levels(otts$site)=="Goats mouth Inlet"] <- "Goat Mouth Inlet"
+levels(otts$site)[levels(otts$site)=="Guktu Bay"] <- "Guktu"
+levels(otts$site)[levels(otts$site)=="Kaguk Bay"] <- "Kaguk "
+levels(otts$site)[levels(otts$site)=="Natzuhini Bay"] <- "Natzuhini"
+levels(otts$site)[levels(otts$site)=="North Fish Egg Island"] <- "North Fish Egg"
+levels(otts$site)[levels(otts$site)=="South Fish Egg Island"] <- "South Fish Egg"
+otts$site <- as.character(otts$site)
+anti_join(otts, site_names, by = c("site" = "site_2019")) # none, good. 
+
+otts <- otts %>%
+  left_join(site_names, by = c("site" = "site_2019")) %>%
+  dplyr::select(c(site:dens_surv2, bay_code, bay_sample, habitat)) %>%
+  unite(site_code, bay_code:bay_sample)
+
+anti_join(sal, otts) # its okay its just the kelp sites that aren't combining. The kelp sites are located approximately at the same place as the eelgrass sites ASIDE FROM the SHKN_A site, which is located more on the outside of Shakan than the eelgrass site--inside Calder Bay. KLWH_A is located within the same region as the North fish egg kelp and eelgrass site. 
+
+```
+
+Lets look at salmon across sea otter density
+```{r}
+sal_otts <- sal %>%
+  filter(habitat == "eelgrass") %>%
+  left_join(otts) %>%
+  mutate(avg_dens = (sum(dens_surv1, dens_surv2))/2)
+
+sal_otts_sum <- sal_otts %>%
+  group_by(site_code, avg_dens) %>%
+  dplyr::summarise(total_g = sum(total)) %>%
+  mutate(total_kg = total_g/1000)
+
+sal_otts_sum %>%
+  ungroup() %>%
+  dplyr::summarise(avg = mean(total_kg))
+
+# graph total salmon biomass by sites ordered from highest sea otter density to lowest
+
+ggplot(data = sal_otts) +
+  geom_bar(aes(x = reorder(site_code, -avg_dens), y = sum(total)), stat = "identity") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+library(corrgram)
+corrgram(sal_otts, 
+         upper.panel = panel.cor,
+         diag.panel = panel.density)
+```
+
+Combine fish data with eelgrass data to export as a table for the ADFG research report
+```{r fish - eel}
+eel_sub <- eel %>%
+  unite(site_code, bay_code:bay_sample) %>%
+  dplyr::select(c(site_code, eg_shoot_mass_m, eg_shoot_mass_m_se, epiph_load, epiph_load_se,
+                  graz_load, graz_load_se))
+
+write.csv(eel_sub, "Data/Eelgrass_comm_site_derived_2019.csv")
+```
+
