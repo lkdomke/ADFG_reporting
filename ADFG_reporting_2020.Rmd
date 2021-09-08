@@ -263,7 +263,11 @@ sites_20 <- crab.dat.near %>%
 dat <- full_join(sites_20, counts)
 dat$Life_stage <- "adult/non-larval juveniles"
 
-
+# just crab pot data for adfg report
+crab_pot_dat <- dat %>%
+  filter(collection_method == "crab pot") %>%
+  dplyr::group_by(sp) %>%
+  dplyr::summarise(total = sum(count))
 
 ## Just group by species ##
 sp <- dat %>% 
