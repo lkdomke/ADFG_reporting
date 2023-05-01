@@ -1,0 +1,368 @@
+---
+title: "ADFG_reporting_2021"
+author: "Lia Domke"
+date: "2/22/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+For our ADFG permit it requires report the number of each species that were collected during that reporting year. 
+
+Species groups we collected in 2021
+1. fish species - seine
+2. invertebrate species - seine
+3. crabs - pots
+4. fish - pots
+5. eelgrass - biometrics and hab
+6. eelgrass - eelgrass wasting disease
+
+
+Based on WR script 
+
+# Alaska Department of Fish and Game Fisheries Resource permit reporting
+This script will take raw "tall" data, from multiple parent sources if necessary, and format it for the FRP reporting form.
+```{r libraries}
+library(dplyr)
+library(tidyr)
+library(readxl)
+library(lubridate)
+```
+
+
+## Data
+```{r data}
+# Eelgrass Site
+sites <- read.csv("../APECS_DM/Data/Site_universalnames_allyears.csv")
+# Eelgrass Biometrics (lab data)
+
+
+# Eelgrass wasting disease (count only, no biomass)
+
+# Crab Pot 
+crab.dat <- read.csv("Data/crab_data_2021_RAW_unchecked.csv", 
+                     header = TRUE, stringsAsFactors = FALSE)
+
+# Habitat data
+hab_quad <- read_xlsx("../Chp3_SeascapeDynamics/Data/Habitat_2021_master_inprog_1-5-21.xlsx", 
+                      sheet = 1)
+hab_plant_lng <- read_xlsx("../Chp3_SeascapeDynamics/Data/Habitat_2021_master_inprog_1-5-21.xlsx",
+                           sheet = 2)
+hab_plant_biom <- read_xlsx("../Chp3_SeascapeDynamics/Data/Habitat_2021_master_inprog_1-5-21.xlsx",
+                            sheet = 3)
+
+# Beach Seine
+fish.dat <- read.csv("../2021_data/fish_beach_seine_2021_MASTER_9-3-21.csv", stringsAsFactors = FALSE, header = TRUE)
+
+
+# add in last years approved IACUC species list to  make sure we were approved to collect said fish
+iacuc.sp.list <- read_xlsx("../../Permits:Licensing/IACUC/Field_season_2021/IACUC_species_2021.xlsx",
+                           sheet = 1)
+```
+
+## Site info
+Subset by the sites surveyed in 2020
+```{r}
+site <- sites %>%
+  unite(bay_ID, bay_code:bay_sample, sep = "_", remove = FALSE)
+
+fish.dat <- fish.dat %>%
+  unite(bay_ID, bay_code:bay_sample)
+```
+
+
+## Eelgrass wasting disease
+20 shoots were taken per transect. 6 transects per site.
+```{r}
+waste.uni.code <- c("NATZ_A", "GUKT_A", "NFEI_A", "REFU_A", "NOSK_A", "SHIN_A")
+waste.date <- c("2021-07-23", "2021-07-25", "2021-07-21", "2021-07-24", "2021-07-26","2021-07-22")
+eg.waste.df <- data.frame("site" = waste.uni.code, "date" = waste.date, sp = rep("Zostera marina", 6), "collection_method" = "hand", "count" = 120)
+
+eg.waste.df <- mutate(eg.waste.df, date = ymd(date))
+eg.waste.df$count <- as.numeric(eg.waste.df$count)
+
+eg.waste <- eg.waste.df %>%
+  left_join(site, by = c("site" = "bay_ID")) %>%
+  rename("bay_ID" = "site") %>%
+  dplyr::select(c(place_name, bay_ID, date, sp, collection_method, count))
+  
+```
+
+
+## Grazers - small inverts
+This will come from the biometrics data - we dont have this for 2021
+
+```{r n grazers}
+## Summarise ##
+#eg.bio <- eg.bio %>%
+#  mutate(date = mdy(collection_date))
+#
+#graz.df <- data.frame(
+#  eg.bio %>% 
+#    group_by(place_name, collection_date) %>% 
+#    summarise(Idothea_rascata = sum(idotea_count, na.rm = TRUE),
+#              Gammarid_amphipod = sum(amphipod_count, na.rm = TRUE),
+#              Caprella_alaskana = sum(caprellid_count, na.rm = TRUE),
+#              Lottia_sp = sum(limpet_count, na.rm = TRUE),
+#              Littorina_sp = sum(gastropod_count, na.rm = TRUE)) %>%
+#    mutate(site = place_name) %>%
+#    mutate(date = mdy(collection_date)) %>%
+#    ungroup() %>%
+#    dplyr::select(-c(place_name, collection_date))
+#  )
+### Convert to tall ##
+#graz <- graz.df %>%
+#  gather(sp, count, Idothea_rascata:Littorina_sp) %>%
+#  left_join(site, by = c("site" = "place_name")) %>%
+#  rename(place_name = site) %>%
+#  dplyr::select(c(place_name,universal_code, sp, count, date))
+### Add colelction method ##
+#graz$collection_method <- "hand"
+#colnames(graz)[4] <- "count"
+```
+## Kelp biomass
+
+```{r}
+
+# join by quadratID 
+kelp_biom <- left_join(hab_plant_biom, hab_quad, by = "quadrat_ID") %>%
+  dplyr::select(species_by_quadrat_ID:habitat, date) %>%
+  left_join(site) %>%
+  select(c(site, bay_ID, species, weight_g, date))
+  
+kelp_sum <- kelp_biom %>%
+  group_by(bay_ID, date, site, species) %>%
+  dplyr::summarise(weight_g = sum(weight_g)) %>%
+  mutate(sp = species) %>%
+  ungroup() %>%
+  dplyr::select(c(sp, bay_ID, weight_g, site, date))
+
+kelp_sum$collection_method <- "hand"
+
+kelp <- kelp_sum
+kelp <- mutate(kelp, date = ymd(date))
+```
+
+
+## Eelgrass
+Our protocol for eelgrass collections for HABITAT data included 15 shoots at 5 quadrats at all eelgrass sites (20 sites)
+for a total of 1500 shoots
+```{r n eelgrass}
+# get right site info
+site.eg <- site %>%
+  subset(bay_ID %in% unique(hab_quad$bay_ID)) %>%
+  filter(habitat == "eelgrass" | habitat == "mixed") %>%
+  dplyr::select(bay_ID, place_name)
+
+# add the missing sites
+missing <- data.frame(
+  "bay_ID"=c("CLAM_A", "BTRB_A", "KLWA_A", "NFEI_B"),
+  "place_name" = c("Clam island", "Big Tree Bay", "Klawock Airport", "North Fish Egg Island"))
+miss <- rbind(missing, site.eg)
+
+eg <- data.frame("place_name" = unique(miss$place_name), "sp" = rep("Zostera marina", 13), "collection_method" = "hand", "count" = 75, "bay_ID" = unique(miss$bay_ID))
+
+eg <- left_join(eg, hab_quad, by = "bay_ID") %>%
+  dplyr::select(place_name, sp, collection_method, count, bay_ID, date) %>%
+  distinct()
+
+eg[1,6] <- "2021-08-08"
+eg[2,6] <- "2021-08-06"
+eg[3,6] <- "2021-08-07"
+eg[4,6] <- "2021-08-09"
+
+eg <- mutate(eg, date = as.Date(date))
+```
+ 
+## Eelgrass wasting disease
+At 5 sites 132 shoots were taken, at the 6th site only 120 were taken
+```{r}
+waste.site <- c("NATZ_A", "GUKT_A", "NFEI_A", "REFU_A", "NOSK_A", "SHIN_A")
+waste.date <- c("2019-07-17", "2019-07-15", "2019-07-14", "2019-07-19", "2019-07-16","2019-07-18")
+eg.waste <- data.frame("site" = waste.site, "date" = waste.date, sp = rep("Zostera marina", 6), "collection_method" = "hand", "count" = 132)
+# fix site where we collected fewer eelgrass blades
+eg.waste[4,5] <- "120"
+
+eg.waste <- mutate(eg.waste, date = ymd(date))
+eg.waste$count <- as.numeric(eg.waste$count)
+```
+
+## Crabs
+This data will come from the crab pot data. We also caught fish in pots so that will be extracted here and added to fish data later.
+
+First you should check the place_names and make sure that it is consistent with what is on the site_metadata. Convert to universal name and then convert back
+
+```{r}
+head(crab.dat)
+
+anti_join(crab.dat,site, by = "bay_code") %>%
+  select(bay_code) %>%
+  distinct() # none missing 
+```
+
+
+```{r}
+# create a diff site that just has one bay code for site id for sites that happened within the bay but not at a specific bed level. 
+
+
+crab.dat2 <- crab.dat %>%
+  unite(bay_ID, bay_code:bay_sample) %>%
+  left_join(site, by = "bay_ID") %>%
+  mutate(date = ymd(YYYYMMDD_pulled)) %>%
+  dplyr::select(c(bay_ID, Sp_ScientificName, taxa, date, carapace_width_mm, sex, fork_length_mm))
+
+```
+
+
+```{r n crabs}
+## Crabs from pots ##
+crab_invert <- data.frame(
+  crab.dat2 %>% 
+    filter(taxa == "Invertebrate" | taxa == "Decapoda") %>% 
+    group_by(bay_ID, Sp_ScientificName, date) %>% 
+    summarise(count = n()) %>%
+    mutate(sp = Sp_ScientificName) %>%
+    ungroup() %>%
+    dplyr::select(-Sp_ScientificName)
+)
+
+crab_invert %>%
+  group_by(sp) %>%
+  dplyr::summarise(no = sum(count))
+
+## Fish from pots ##
+fish.crab <- data.frame(
+  crab.dat2 %>% 
+    filter(taxa == "Vertebrata") %>% 
+    group_by(Sp_ScientificName, bay_ID, date) %>% 
+    summarise(count = n()) %>%
+    mutate(sp = Sp_ScientificName) %>%
+    ungroup() %>%
+    dplyr::select(-Sp_ScientificName)
+)
+```
+
+## Fish
+This data will come from the beach seine data. We also caught crabs in the beach seine so that will be extracted here and added to the crab derived above.
+```{r n fish}
+# lets drop the last couple colmns cause they're associated w/ data checking
+fish.dat <- fish.dat[,-c(22:23)]
+
+fish.dat <- fish.dat %>%
+  unite(unmeasured, unmeasured:unmeasured_sm, na.rm = TRUE, remove = FALSE)
+
+fish.dat$abundance <- as.numeric(ifelse(is.na(fish.dat$fork_length), paste(fish.dat$unmeasured), 1))
+
+## Fish from seine ##
+fish.sum <- fish.dat %>%
+  filter(taxon == "vertebrate") %>%
+  left_join(site, by = "bay_ID") %>%
+  mutate(date = mdy(date)) %>%
+  group_by(bay_ID, species_scientific, date) %>%
+  dplyr::summarise(count = sum(abundance)) %>%
+  ungroup() %>%
+  mutate(sp = species_scientific) %>%
+  dplyr::select(-c(species_scientific))
+
+
+## Crabs from seine ##
+crab.fish <- data.frame(
+  fish.dat %>%
+    filter(taxon == "invertebrate") %>% 
+    #unite(bay_ID, bay_code:bay_sample) %>%
+    left_join(site, by = "bay_ID") %>%
+    mutate(date = mdy(date)) %>%
+    group_by(species_scientific, species_common, bay_ID, date) %>% 
+    summarise(count = n()) %>%
+    ungroup() %>%
+    mutate(sp = species_scientific) %>%
+    dplyr::select(-c(species_scientific))
+)
+```
+
+## Bring it all together now
+Get all the summaries above into one nice happy table! Including site identifier information.
+```{r}
+## All the crabs ##
+crab$collection_method <- "crab pot"
+crab.fish$collection_method <- "beach seine"
+crab <- bind_rows(crab.fish, crab)
+## All the fish ##
+fish.crab$collection_method <- "crab pot"
+fish.sum$collection_method <- "beach seine"
+fish <- bind_rows(fish.sum, fish.crab)
+fish[is.na(fish)] <- 0
+## Final Combine ##
+
+
+counts <- bind_rows(crab, fish, eg.waste, eg, kelp) %>%
+  dplyr::select(c(bay_ID, sp, weight_g, date, collection_method, count)) 
+
+# get lat/long for crab pot sites
+sites_21 <- fish.dat %>%
+  dplyr::select(bay_ID) %>%
+  distinct() %>%
+  left_join(site, by = "bay_ID") %>%
+  dplyr::select(c(bay_ID, place_name, latitude, longitude))
+
+dat <- full_join(sites_21, counts, by = "bay_ID")
+dat$Life_stage <- "adult/non-larval juveniles"
+
+# just crab pot data for adfg report
+crab_pot_dat <- dat %>%
+  filter(collection_method == "crab pot") %>%
+  dplyr::group_by(sp) %>%
+  dplyr::summarise(total = sum(count))
+
+## Just group by species ##
+sp <- dat %>% 
+ group_by(sp) %>% 
+summarise(total = sum(count))
+
+## Just fish for IACUC ##
+# add back in common name
+sp_list <- fish.dat %>%
+  filter(taxon == "vertebrate") %>%
+  dplyr::select(species_common, species_scientific) %>%
+  distinct()
+
+# get number of fish caught for each species
+fish.sp <- fish.sum %>% 
+  filter(collection_method == "beach seine") %>% # only  beach seine data
+  group_by(sp) %>%
+  summarise(total = sum(count)) %>%
+  left_join(sp_list, by = c("sp" = "species_scientific")) %>%
+  relocate(species_common, sp, total)
+  
+fish.sp$total_retained <- 0
+
+# second sheet on collection report, location, species, and number
+summary <- dat %>%
+  group_by(place_name, sp, weight_g, count) %>%
+  dplyr::summarise()
+#write.csv(summary, "Data/collection_by_loc_2021.csv")
+```
+
+## Export
+```{r}
+write.csv(dat, "Data/Species_by_site_2021.csv", row.names = FALSE)
+#write.csv(sp, "Data/Species_2021.csv", row.names = FALSE)
+#write.csv(fish.sp, "../../Permits:Licensing/IACUC/IACUC_collected_in_2020.csv", row.names = FALSE)
+```
+
+read in the collection report and add in place_name 
+```{r}
+coll<- read.csv("collection_report_2021.csv", header = FALSE)
+
+coll <- coll[-c(1:5),]
+coll$V3 <- as.numeric(coll$V3)
+coll$V4 <- as.numeric(coll$V4)
+coll %>%
+  rename(Date = V1, Location = V2, latitude = V3, longitude = V4) %>%
+  left_join(site) %>%
+  dplyr::select(c(Date, latitude, longitude, bay_ID, place_name, V6, V5)) %>%
+  write.csv("collection_2021_location_info.csv")
+```
+

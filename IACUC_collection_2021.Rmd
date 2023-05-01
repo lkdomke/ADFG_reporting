@@ -70,3 +70,13 @@ Looks pretty good, i.e. that we don't have any species we didn't account for or 
 #write.csv(fish.sp, "../../Permits:Licensing/IACUC/Field_season_2021/IACUC_collected_2021.csv")
 ```
 
+Looking at average eelgrass biomass, epiphyte load, and grazer load from 2021
+```{r}
+eel.biom.dens21 <- read.csv("../Chp3_SeascapeDynamics/Data/eelgrass_biom_2021.csv", stringsAsFactors = FALSE, header = TRUE)
+
+
+eel.biom.dens21 %>%
+  group_by(site) %>%
+  dplyr::summarise(avg_biom_g_m2 = mean(total_biomass_g))
+```
+

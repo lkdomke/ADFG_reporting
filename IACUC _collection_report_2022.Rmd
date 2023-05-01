@@ -1,0 +1,108 @@
+---
+title: "IACUC_collected_2022"
+author: "Lia Domke"
+date: "3/22/2023"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries}
+library(tidyverse)
+library(readxl)
+```
+
+We need to report to IACUC the species and how many individuals of each species we handled/caught in 2022
+
+Read in data
+```{r}
+seine22 <- read.csv("../APECS_DM/Data/Fish_Seine/fish_mass_2022_derived.csv") #make sure its the most up to date.
+# this one has already been cleaned by APECS_EM so thats great
+
+# read in species list information from knb
+species <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3A08b8bcd1-3451-4a3a-a9ee-f3ad8b1a437e"), header = TRUE, stringsAsFactors = FALSE)
+
+
+# add in last years approved IACUC species list to  make sure we were approved to collect said fish
+iacuc.sp.list <- read_xlsx("../../Permits:Licensing/IACUC/Field_season_2022/iacuc_permited_species_2022.xlsx",
+                           sheet = 1)
+```
+
+Take a look at the data format
+```{r}
+glimpse(seine22)
+
+unique(seine22[c("sp_code", "species_common", "species_scientific")])
+unique(seine22[c("bay_id","place_name", "date", "start_time", "end_time", "slope", "tide_height", "tide_time", "habitat")])
+```
+
+Basic cleaning
+```{r}
+fish <- seine22 %>%
+  filter(taxon == "fish") # remove invertebrate catch
+
+```
+
+Calculate number of individuals caught of each species over the season
+```{r}
+fish.sp <- fish %>% 
+  group_by(species_scientific) %>%
+  summarise(total = sum(abundance)) %>%
+  left_join(species, by = c("species_scientific" = "Sp_ScientificName"), ("species_common" = "Sp_CommonName")) %>%
+  relocate(Sp_CommonName, species_scientific, total)
+
+fish.sp$total_retained <- 0
+```
+
+Lets see the max catch from the IACUC forms
+```{r}
+glimpse(iacuc.sp.list)
+```
+
+Looks pretty good, i.e. that we don't have any species we didn't account for or touched too many fish
+```{r}
+#write.csv(fish.sp, "../../Permits:Licensing/IACUC/Field_season_2022/IACUC_collected_2022.csv")
+```
+
+
+For the ADFG report: 
+how much fish in mass did we catch
+```{r}
+glimpse(fish)
+
+mass.by.sp <- fish %>%
+  group_by(bay_id, sp_code, species_scientific) %>%
+  dplyr::summarise(total_mass = sum(mass_g))
+
+range(mass.by.sp$total_mass)
+
+mass.by.site <- fish %>%
+  group_by(bay_id) %>%
+  dplyr::summarise(total_mass = sum(mass_g)/100,
+                   avg_mass = mean(mass_g)/100)
+
+range(mass.by.site$total_mass)
+range(mass.by.site$avg_mass)
+
+fish %>%
+  group_by(bay_id) %>%
+  summarise(avg_mass = mean(mass_g)/100)
+
+unique(fish[c("sp_code", "species_common", "species_scientific")])
+
+sp.counts <- fish %>%
+  group_by(species_common, species_scientific) %>%
+  dplyr::summarise(counts = sum(abundance)) %>%
+  arrange(-counts)
+
+fish %>%
+  summarise(counts = sum(abundance))
+
+# used these above metrics to calculate the things required for the ADFG research report
+```
+
+

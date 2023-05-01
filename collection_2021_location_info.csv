@@ -1,0 +1,517 @@
+,Date,latitude,longitude,bay_ID,place_name,V6,V5
+1,6/8/21,55.179058,-131.582105,SYLB_A,Sylburn harbor,Hexagrammos stelleri,beach seine
+2,6/8/21,55.179058,-131.582105,SYLB_A,Sylburn harbor,Lumpenus sagitta,beach seine
+3,6/8/21,55.179058,-131.582105,SYLB_A,Sylburn harbor,Sebastes sp,beach seine
+4,6/8/21,55.179058,-131.582105,SYLB_A,Sylburn harbor,Pholis laeta,beach seine
+5,6/8/21,55.179058,-131.582105,SYLB_A,Sylburn harbor,Artedius spp.,beach seine
+6,6/8/21,55.179058,-131.582105,SYLB_A,Sylburn harbor,Syngnathus leptorhynchus,beach seine
+7,6/8/21,55.179058,-131.582105,SYLB_A,Sylburn harbor,Cymatogaster aggregata,beach seine
+8,6/8/21,55.179058,-131.582105,SYLB_A,Sylburn harbor,Myoxocephalus polyacanthocephalus,beach seine
+9,6/8/21,55.179058,-131.582105,SYLB_A,Sylburn harbor,Temessus cheiragonus,beach seine
+10,6/8/21,55.179058,-131.582105,SYLB_A,Sylburn harbor,Oncorhynchus gorbuscha,beach seine
+11,6/8/21,55.179058,-131.582105,SYLB_A,Sylburn harbor,"Pugettia producta, Majidae",beach seine
+12,6/8/21,55.179058,-131.582105,SYLB_A,Sylburn harbor,Anoplarchus insignis,beach seine
+13,6/8/21,55.179058,-131.582105,SYLB_A,Sylburn harbor,"Cancer productus, Cancridae",beach seine
+14,6/8/21,55.179058,-131.582105,SYLB_A,Sylburn harbor,Cottidae,beach seine
+15,6/8/21,55.179058,-131.582105,SYLB_A,Sylburn harbor,Hexagrammos lagocephalus,beach seine
+16,6/8/21,55.179058,-131.582105,SYLB_A,Sylburn harbor,Leptocottus armatus,beach seine
+17,6/8/21,55.179058,-131.582105,SYLB_A,Sylburn harbor,Oncorhynchus keta,beach seine
+18,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Acrosiphinia arcta,hand
+19,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Chordaria flagelliformis,hand
+20,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Dictyosiphon foeniculaceus,hand
+21,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Farlowia mollis,hand
+22,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Fucus distichus,hand
+23,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Odonthalia spp,hand
+24,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Saccharina latissima,hand
+25,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Sphacelaria rigidula,hand
+26,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Ulva lactuca,hand
+27,6/9/21,55.179058,-131.582105,SYLB_A,Sylburn harbor,Zostera marina,hand
+28,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Oncorhynchus gorbuscha,beach seine
+29,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Sebastes sp,beach seine
+30,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Oncorhynchus kisutch,beach seine
+31,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Hexagrammos stelleri,beach seine
+32,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Pholis laeta,beach seine
+33,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Artedius spp.,beach seine
+34,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Sebastes caurinus,beach seine
+35,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Rhinogobiops nicholsii,beach seine
+36,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Temessus cheiragonus,beach seine
+37,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Myoxocephalus polyacanthocephalus,beach seine
+38,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Brachyistius frenatus,beach seine
+39,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Sebastes maliger,beach seine
+40,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Anoplarchus insignis,beach seine
+41,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Blepsias cirrhosus,beach seine
+42,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Enophrys bison,beach seine
+43,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Gadus macrocephalus,beach seine
+44,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Lumpenus sagitta,beach seine
+45,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Nautichthys oculofasciatus,beach seine
+46,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Ophiodon elongatus,beach seine
+47,6/9/21,55.176,-131.5972,SYLB_B,Sylburn harbor,Oxylebius pictus,beach seine
+48,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Ammodytes personatus,beach seine
+49,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Gadus macrocephalus,beach seine
+50,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Oncorhynchus gorbuscha,beach seine
+51,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Zostera marina,hand
+52,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Parophrys vetulus,beach seine
+53,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Pholis laeta,beach seine
+54,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Citharichthys sordidus,beach seine
+55,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Podothecus accipenserinus,beach seine
+56,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Syngnathus leptorhynchus,beach seine
+57,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Oncorhynchus kisutch,beach seine
+58,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Pleuronectidae,beach seine
+59,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Artedius spp.,beach seine
+60,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Limanda aspera,beach seine
+61,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Hexagrammos stelleri,beach seine
+62,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Ophiodon elongatus,beach seine
+63,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Leptocottus armatus,beach seine
+64,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Metacarcinus magister,beach seine
+65,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Apodichthys flavidus,beach seine
+66,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Blepsias cirrhosus,beach seine
+67,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Lepidopsetta spp.,beach seine
+68,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Lumpenus sagitta,beach seine
+69,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Aulorhynchus flavidus,beach seine
+70,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Cymatogaster aggregata,beach seine
+71,6/10/21,54.9684,-131.2492,REEF_A,Reef harbor,Myoxocephalus polyacanthocephalus,beach seine
+72,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Zostera marina,hand
+73,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Cymatogaster aggregata,beach seine
+74,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Pholis laeta,beach seine
+75,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Lepidopsetta spp.,beach seine
+76,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Metacarcinus magister,beach seine
+77,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Artedius spp.,beach seine
+78,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Sebastes sp,beach seine
+79,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Syngnathus leptorhynchus,beach seine
+80,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Myoxocephalus polyacanthocephalus,beach seine
+81,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Gadus macrocephalus,beach seine
+82,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Apodichthys flavidus,beach seine
+83,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Hexagrammos stelleri,beach seine
+84,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,"Pugettia producta, Majidae",beach seine
+85,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Enophrys bison,beach seine
+86,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Hemilepidotus hemilepidotus,beach seine
+87,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Sebastes maliger,beach seine
+88,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Aulorhynchus flavidus,beach seine
+89,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Blepsias cirrhosus,beach seine
+90,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Cottidae,beach seine
+91,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Gasterosteus aculeatus,beach seine
+92,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Hemilepidotus sp.,beach seine
+93,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Leptocottus armatus,beach seine
+94,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Limanda aspera,beach seine
+95,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Oncorhynchus kisutch,beach seine
+96,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Pleuronichthys coenosus,beach seine
+97,6/11/21,55.0426,-130.9995,KAHS_A,Kah shakes,Sebastes caurinus,beach seine
+98,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Acrosiphinia arcta,hand
+99,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Ceramiales (order),hand
+100,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Chordaria flagelliformis,hand
+101,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Costaria costata,hand
+102,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Cryptosiphonia woodii,hand
+103,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Desmarestia viridis,hand
+104,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Fucus distichus,hand
+105,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Mazzaella phyllocarpa,hand
+106,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Neorhodomela aculeata,hand
+107,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Neorhodomela larix,hand
+108,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Palmaria hecatensis,hand
+109,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Palmaria mollis,hand
+110,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Polyneura latissima,hand
+111,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Pterosiphonia spp,hand
+112,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Saccharina latissima,hand
+113,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Sparlingia pertusa,hand
+114,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Ulva lactuca,hand
+115,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Ulva linza,hand
+116,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Unknown Finely Branched Reds,hand
+117,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Cymatogaster aggregata,beach seine
+118,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Ammodytes personatus,beach seine
+119,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Citharichthys stigmaeus,beach seine
+120,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Lepidopsetta spp.,beach seine
+121,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Blepsias cirrhosus,beach seine
+122,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Brachyistius frenatus,beach seine
+123,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Enophrys bison,beach seine
+124,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Pholis laeta,beach seine
+125,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Sebastes caurinus,beach seine
+126,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Sebastes sp,beach seine
+127,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Anoplarchus insignis,beach seine
+128,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Apodichthys flavidus,beach seine
+129,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Artedius spp.,beach seine
+130,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Hexagrammos decagrammus,beach seine
+131,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Hexagrammos octogrammus,beach seine
+132,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Hexagrammos stelleri,beach seine
+133,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Leptocottus armatus,beach seine
+134,6/12/21,55.066147,-130.989508,KAHS_B,Kah shakes,Podothecus accipenserinus,beach seine
+135,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Acrosiphinia arcta,hand
+136,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Agarum spp,hand
+137,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Desmarestia aculeata,hand
+138,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Fucus gardneri,hand
+139,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Mazzaella phyllocarpa,hand
+140,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Microcladia borealis,hand
+141,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Neorhodomela aculeata,hand
+142,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Odonthalia floccosa f. comosa,hand
+143,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Palmaria hecatensis,hand
+144,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Palmaria mollis,hand
+145,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Polyneura latissima,hand
+146,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Pterosiphonia spp,hand
+147,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Ptilota serrata,hand
+148,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Saccharina groenlandica,hand
+149,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Schizymenia pacifica,hand
+150,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Ulva lactuca,hand
+151,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Unknown Finely Branched Reds,hand
+152,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Parophrys vetulus,beach seine
+153,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Salvelinus malma,beach seine
+154,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Aulorhynchus flavidus,beach seine
+155,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Gadus macrocephalus,beach seine
+156,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Blepsias cirrhosus,beach seine
+157,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Oncorhynchus gorbuscha,beach seine
+158,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Pholis laeta,beach seine
+159,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Ophiodon elongatus,beach seine
+160,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Apodichthys flavidus,beach seine
+161,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Artedius spp.,beach seine
+162,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Hemilepidotus sp.,beach seine
+163,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Oncorhynchus keta,beach seine
+164,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Podothecus accipenserinus,beach seine
+165,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Sebastes sp,beach seine
+166,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Syngnathus leptorhynchus,beach seine
+167,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Ammodytes personatus,beach seine
+168,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Hexagrammos stelleri,beach seine
+169,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Oncorhynchus kisutch,beach seine
+170,6/13/21,54.974693,-131.255107,REEF_B,Reef harbor,Pleuronectidae,beach seine
+171,6/14/21,55.156451,-131.749909,DALL_A,Dall bay,Lumpenus sagitta,beach seine
+172,6/14/21,55.156451,-131.749909,DALL_A,Dall bay,Zostera marina,hand
+173,6/14/21,55.156451,-131.749909,DALL_A,Dall bay,Pholis laeta,beach seine
+174,6/14/21,55.156451,-131.749909,DALL_A,Dall bay,Gasterosteus aculeatus,beach seine
+175,6/14/21,55.156451,-131.749909,DALL_A,Dall bay,Parophrys vetulus,beach seine
+176,6/14/21,55.156451,-131.749909,DALL_A,Dall bay,Aulorhynchus flavidus,beach seine
+177,6/14/21,55.156451,-131.749909,DALL_A,Dall bay,Artedius spp.,beach seine
+178,6/14/21,55.156451,-131.749909,DALL_A,Dall bay,Gadus macrocephalus,beach seine
+179,6/14/21,55.156451,-131.749909,DALL_A,Dall bay,Syngnathus leptorhynchus,beach seine
+180,6/14/21,55.156451,-131.749909,DALL_A,Dall bay,Hexagrammos stelleri,beach seine
+181,6/14/21,55.156451,-131.749909,DALL_A,Dall bay,Citharichthys stigmaeus,beach seine
+182,6/14/21,55.156451,-131.749909,DALL_A,Dall bay,Cymatogaster aggregata,beach seine
+183,6/14/21,55.156451,-131.749909,DALL_A,Dall bay,Lepidopsetta spp.,beach seine
+184,6/14/21,55.156451,-131.749909,DALL_A,Dall bay,Leptocottus armatus,beach seine
+185,6/14/21,55.156451,-131.749909,DALL_A,Dall bay,Metacarcinus magister,beach seine
+186,6/14/21,55.156451,-131.749909,DALL_A,Dall bay,Myoxocephalus polyacanthocephalus,beach seine
+187,6/14/21,55.156451,-131.749909,DALL_A,Dall bay,Oncorhynchus gorbuscha,beach seine
+188,6/14/21,55.156451,-131.749909,DALL_A,Dall bay,Division Teleostei,beach seine
+189,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Agarum clathratum,hand
+190,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Chondracanthus exasperatus,hand
+191,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Fucus distichus,hand
+192,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Halosaccion glandiforme,hand
+193,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Leathesia marina,hand
+194,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Mazzaella splendens,hand
+195,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Microcladia borealis,hand
+196,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Neorhodomela aculeata,hand
+197,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Odonthalia floccosa f. comosa,hand
+198,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Opuntiella californica,hand
+199,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Palmaria mollis,hand
+200,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Polyneura latissima,hand
+201,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Ptilota serrata,hand
+202,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Saccharina latissima,hand
+203,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Ulva lactuca,hand
+204,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Unknown Finely Branched Reds,hand
+205,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Oncorhynchus gorbuscha,beach seine
+206,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Oncorhynchus kisutch,beach seine
+207,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Ammodytes personatus,beach seine
+208,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Cymatogaster aggregata,beach seine
+209,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Gasterosteus aculeatus,beach seine
+210,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Brachyistius frenatus,beach seine
+211,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Artedius spp.,beach seine
+212,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Sebastes sp,beach seine
+213,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Pholis laeta,beach seine
+214,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,"Pugettia producta, Majidae",beach seine
+215,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Clupea pallasii,beach seine
+216,6/15/21,55.155254,-131.742113,DALL_B,Dall bay,Oxylebius pictus,beach seine
+217,6/22/21,54.9711,-132.0924,MOIR_A,Moira sound,Syngnathus leptorhynchus,beach seine
+218,6/22/21,54.9711,-132.0924,MOIR_A,Moira sound,Zostera marina,hand
+219,6/22/21,54.9711,-132.0924,MOIR_A,Moira sound,Hexagrammos stelleri,beach seine
+220,6/22/21,54.9711,-132.0924,MOIR_A,Moira sound,Lumpenus sagitta,beach seine
+221,6/22/21,54.9711,-132.0924,MOIR_A,Moira sound,Gasterosteus aculeatus,beach seine
+222,6/22/21,54.9711,-132.0924,MOIR_A,Moira sound,Cymatogaster aggregata,beach seine
+223,6/22/21,54.9711,-132.0924,MOIR_A,Moira sound,Aulorhynchus flavidus,beach seine
+224,6/22/21,54.9711,-132.0924,MOIR_A,Moira sound,Temessus cheiragonus,beach seine
+225,6/22/21,54.9711,-132.0924,MOIR_A,Moira sound,Leptocottus armatus,beach seine
+226,6/22/21,54.9711,-132.0924,MOIR_A,Moira sound,Enophrys bison,beach seine
+227,6/22/21,54.9711,-132.0924,MOIR_A,Moira sound,Gadus macrocephalus,beach seine
+228,6/22/21,54.9711,-132.0924,MOIR_A,Moira sound,Myoxocephalus polyacanthocephalus,beach seine
+229,6/22/21,54.9711,-132.0924,MOIR_A,Moira sound,Metacarcinus gracilis,beach seine
+230,6/22/21,54.9711,-132.0924,MOIR_A,Moira sound,Parstichopus californicus,beach seine
+231,6/23/21,54.985511,-132.109731,MOIR_B,Moira sound,Agarum clathratum,hand
+232,6/23/21,54.985511,-132.109731,MOIR_B,Moira sound,Callophyllis spp,hand
+233,6/23/21,54.985511,-132.109731,MOIR_B,Moira sound,Ceramium pacificum,hand
+234,6/23/21,54.985511,-132.109731,MOIR_B,Moira sound,Chaetomorpha spp,hand
+235,6/23/21,54.985511,-132.109731,MOIR_B,Moira sound,Dictyosiphon foeniculaceus,hand
+236,6/23/21,54.985511,-132.109731,MOIR_B,Moira sound,Dumontia alaskana,hand
+237,6/23/21,54.985511,-132.109731,MOIR_B,Moira sound,Mazzaella phyllocarpa,hand
+238,6/23/21,54.985511,-132.109731,MOIR_B,Moira sound,Palmaria hecatensis,hand
+239,6/23/21,54.985511,-132.109731,MOIR_B,Moira sound,Palmaria mollis,hand
+240,6/23/21,54.985511,-132.109731,MOIR_B,Moira sound,Saccharina groenlandica,hand
+241,6/23/21,54.985511,-132.109731,MOIR_B,Moira sound,Saccharina spp,hand
+242,6/23/21,54.985511,-132.109731,MOIR_B,Moira sound,Sphacelaria rigidula,hand
+243,6/24/21,54.985511,-132.109731,MOIR_B,Moira sound,Cymatogaster aggregata,beach seine
+244,6/24/21,54.985511,-132.109731,MOIR_B,Moira sound,Artedius spp.,beach seine
+245,6/24/21,54.985511,-132.109731,MOIR_B,Moira sound,Pholis laeta,beach seine
+246,6/24/21,54.985511,-132.109731,MOIR_B,Moira sound,Gadus macrocephalus,beach seine
+247,6/24/21,54.985511,-132.109731,MOIR_B,Moira sound,Gasterosteus aculeatus,beach seine
+248,6/24/21,54.985511,-132.109731,MOIR_B,Moira sound,Leptocottus armatus,beach seine
+249,6/24/21,54.985511,-132.109731,MOIR_B,Moira sound,Parstichopus californicus,beach seine
+250,6/24/21,54.985511,-132.109731,MOIR_B,Moira sound,"Pugettia producta, Majidae",beach seine
+251,6/24/21,54.985511,-132.109731,MOIR_B,Moira sound,Syngnathus leptorhynchus,beach seine
+252,6/24/21,54.985511,-132.109731,MOIR_B,Moira sound,Temessus cheiragonus,beach seine
+253,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Acrosiphinia arcta,hand
+254,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Agarum clathratum,hand
+255,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Fucus distichus,hand
+256,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Palmaria mollis,hand
+257,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Saccharina groenlandica,hand
+258,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Saccharina latissima,hand
+259,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Saccharina spp,hand
+260,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Ulva lactuca,hand
+261,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Rhinogobiops nicholsii,beach seine
+262,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Cymatogaster aggregata,beach seine
+263,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Pholis laeta,beach seine
+264,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Sebastes maliger,beach seine
+265,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Sebastes sp,beach seine
+266,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Artedius spp.,beach seine
+267,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Temessus cheiragonus,beach seine
+268,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Oxylebius pictus,beach seine
+269,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Brachyistius frenatus,beach seine
+270,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Leptocottus armatus,beach seine
+271,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Ronquilus jordani,beach seine
+272,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Sebastes caurinus,beach seine
+273,6/25/21,54.726046,-132.124284,NICH_B,Nichols Bay,Sebastes melanops,beach seine
+274,6/26/21,54.740107,-132.153373,NICH_A,Nichols Bay,Syngnathus leptorhynchus,beach seine
+275,6/26/21,54.740107,-132.153373,NICH_A,Nichols Bay,Cymatogaster aggregata,beach seine
+276,6/26/21,54.740107,-132.153373,NICH_A,Nichols Bay,Zostera marina,hand
+277,6/26/21,54.740107,-132.153373,NICH_A,Nichols Bay,Pholis laeta,beach seine
+278,6/26/21,54.740107,-132.153373,NICH_A,Nichols Bay,Myoxocephalus polyacanthocephalus,beach seine
+279,6/26/21,54.740107,-132.153373,NICH_A,Nichols Bay,Artedius spp.,beach seine
+280,6/26/21,54.740107,-132.153373,NICH_A,Nichols Bay,Hexagrammos octogrammus,beach seine
+281,6/26/21,54.740107,-132.153373,NICH_A,Nichols Bay,Leptocottus armatus,beach seine
+282,6/26/21,54.740107,-132.153373,NICH_A,Nichols Bay,Oncorhynchus kisutch,beach seine
+283,6/26/21,54.740107,-132.153373,NICH_A,Nichols Bay,Blepsias cirrhosus,beach seine
+284,6/26/21,54.740107,-132.153373,NICH_A,Nichols Bay,Enophrys bison,beach seine
+285,6/26/21,54.740107,-132.153373,NICH_A,Nichols Bay,Gasterosteus aculeatus,beach seine
+286,6/26/21,54.740107,-132.153373,NICH_A,Nichols Bay,Hexagrammos stelleri,beach seine
+287,6/26/21,54.740107,-132.153373,NICH_A,Nichols Bay,Temessus cheiragonus,beach seine
+288,6/27/21,54.830481,-132.28609,NA,NA,Agarum clathratum,hand
+289,6/27/21,54.830481,-132.28609,NA,NA,Fucus distichus,hand
+290,6/27/21,54.830481,-132.28609,NA,NA,Pterosiphonia spp,hand
+291,6/27/21,54.830481,-132.28609,NA,NA,Saccharina latissima,hand
+292,6/27/21,54.830481,-132.28609,NA,NA,Saccharina spp,hand
+293,6/27/21,54.830481,-132.28609,NA,NA,Ulva lactuca,hand
+294,6/27/21,54.830481,-132.28609,NA,NA,Syngnathus leptorhynchus,beach seine
+295,6/27/21,54.830481,-132.28609,NA,NA,Pholis laeta,beach seine
+296,6/27/21,54.830481,-132.28609,NA,NA,Zostera marina,hand
+297,6/27/21,54.830481,-132.28609,NA,NA,Hexagrammos stelleri,beach seine
+298,6/27/21,54.830481,-132.28609,NA,NA,Cymatogaster aggregata,beach seine
+299,6/27/21,54.830481,-132.28609,NA,NA,Lumpenus sagitta,beach seine
+300,6/27/21,54.830481,-132.28609,NA,NA,Ophiodon elongatus,beach seine
+301,6/27/21,54.830481,-132.28609,NA,NA,Artedius spp.,beach seine
+302,6/27/21,54.830481,-132.28609,NA,NA,Gasterosteus aculeatus,beach seine
+303,6/27/21,54.830481,-132.28609,NA,NA,Temessus cheiragonus,beach seine
+304,6/27/21,54.830481,-132.28609,NA,NA,Clupea pallasii,beach seine
+305,6/27/21,54.830481,-132.28609,NA,NA,Gadus macrocephalus,beach seine
+306,6/27/21,54.830481,-132.28609,NA,NA,Parophrys vetulus,beach seine
+307,6/27/21,54.830481,-132.28609,NA,NA,Sebastes caurinus,beach seine
+308,6/27/21,54.830481,-132.28609,NA,NA,Citharichthys sordidus,beach seine
+309,6/27/21,54.830481,-132.28609,NA,NA,Lepidogobius lepidus,beach seine
+310,6/27/21,54.830481,-132.28609,NA,NA,Platichthys stellatus,beach seine
+311,6/27/21,54.830481,-132.28609,NA,NA,Sebastes melanops,beach seine
+312,6/28/21,54.872263,-132.308073,HUNT_A,Hunter Bay,Lumpenus sagitta,beach seine
+313,6/28/21,54.872263,-132.308073,HUNT_A,Hunter Bay,Artedius spp.,beach seine
+314,6/28/21,54.872263,-132.308073,HUNT_A,Hunter Bay,Zostera marina,hand
+315,6/28/21,54.872263,-132.308073,HUNT_A,Hunter Bay,Pholis laeta,beach seine
+316,6/28/21,54.872263,-132.308073,HUNT_A,Hunter Bay,Cymatogaster aggregata,beach seine
+317,6/28/21,54.872263,-132.308073,HUNT_A,Hunter Bay,Oncorhynchus kisutch,beach seine
+318,6/28/21,54.872263,-132.308073,HUNT_A,Hunter Bay,Syngnathus leptorhynchus,beach seine
+319,6/28/21,54.872263,-132.308073,HUNT_A,Hunter Bay,Pallasina barbata,beach seine
+320,6/28/21,54.872263,-132.308073,HUNT_A,Hunter Bay,Temessus cheiragonus,beach seine
+321,6/28/21,54.872263,-132.308073,HUNT_A,Hunter Bay,Anoplarchus insignis,beach seine
+322,6/28/21,54.872263,-132.308073,HUNT_A,Hunter Bay,Leptocottus armatus,beach seine
+323,6/28/21,54.872263,-132.308073,HUNT_A,Hunter Bay,Citharichthys sordidus,beach seine
+324,6/28/21,54.872263,-132.308073,HUNT_A,Hunter Bay,Gasterosteus aculeatus,beach seine
+325,6/28/21,54.872263,-132.308073,HUNT_A,Hunter Bay,Myoxocephalus polyacanthocephalus,beach seine
+326,6/28/21,54.872263,-132.308073,HUNT_A,Hunter Bay,Oncorhynchus nerka,beach seine
+327,7/4/21,55.7073,-133.342,NOSK_A,Nossuk Bay,Metacarcinus gracilis,crab pot
+328,7/4/21,55.7073,-133.342,NOSK_A,Nossuk Bay,Leptocottus armatus,crab pot
+329,7/4/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Metacarcinus gracilis,crab pot
+330,7/4/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Leptocottus armatus,crab pot
+331,7/4/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Telmessus cheiragonus,crab pot
+332,7/4/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Hexagrammos stelleri,crab pot
+333,7/4/21,55.7073,-133.342,NOSK_A,Nossuk Bay,Squalus acanthias,crab pot
+334,7/4/21,55.7073,-133.342,NOSK_A,Nossuk Bay,Telmessus cheiragonus,crab pot
+335,7/6/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Metacarcinus gracilis,crab pot
+336,7/6/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Cancer productus,crab pot
+337,7/6/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Leptocottus armatus,crab pot
+338,7/6/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Leptocottus armatus,crab pot
+339,7/6/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Telmessus cheiragonus,crab pot
+340,7/9/21,55.25051,-132.883,NATZ_A,Natzuhini Bay,Gasterosteus aculeatus,beach seine
+341,7/9/21,55.25051,-132.883,NATZ_A,Natzuhini Bay,Cymatogaster aggregata,beach seine
+342,7/9/21,55.25051,-132.883,NATZ_A,Natzuhini Bay,Lumpenus sagitta,beach seine
+343,7/9/21,55.25051,-132.883,NATZ_A,Natzuhini Bay,Syngnathus leptorhynchus,beach seine
+344,7/9/21,55.25051,-132.883,NATZ_A,Natzuhini Bay,Aulorhynchus flavidus,beach seine
+345,7/9/21,55.25051,-132.883,NATZ_A,Natzuhini Bay,Pholis laeta,beach seine
+346,7/9/21,55.25051,-132.883,NATZ_A,Natzuhini Bay,Lepidogobius lepidus,beach seine
+347,7/9/21,55.25051,-132.883,NATZ_A,Natzuhini Bay,Cancer productus,crab pot
+348,7/9/21,55.282137,-133.334028,REFU_A,Port Refugio,Telmessus cheiragonus,crab pot
+349,7/9/21,55.25051,-132.883,NATZ_A,Natzuhini Bay,Temessus cheiragonus,beach seine
+350,7/9/21,55.25051,-132.883,NATZ_A,Natzuhini Bay,Enophrys bison,beach seine
+351,7/9/21,55.25051,-132.883,NATZ_A,Natzuhini Bay,Artedius spp.,beach seine
+352,7/9/21,55.25051,-132.883,NATZ_A,Natzuhini Bay,Citharichthys sordidus,beach seine
+353,7/9/21,55.25051,-132.883,NATZ_A,Natzuhini Bay,Leptocottus armatus,beach seine
+354,7/9/21,55.25051,-132.883,NATZ_A,Natzuhini Bay,Citharichthys stigmaeus,beach seine
+355,7/9/21,55.282137,-133.334028,REFU_A,Port Refugio,Leptocottus armatus,crab pot
+356,7/9/21,55.25051,-132.883,NATZ_A,Natzuhini Bay,Limanda aspera,crab pot
+357,7/9/21,55.282137,-133.334028,REFU_A,Port Refugio,Metacarcinus gracilis,crab pot
+358,7/9/21,55.282137,-133.334028,REFU_A,Port Refugio,Pandalus danae,crab pot
+359,7/9/21,55.25051,-132.883,NATZ_A,Natzuhini Bay,Parophrys vetulus,beach seine
+360,7/9/21,55.282137,-133.334028,REFU_A,Port Refugio,Pycnopodia helianthoides,crab pot
+361,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Gasterosteus aculeatus,beach seine
+362,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Lumpenus sagitta,beach seine
+363,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Pholis laeta,beach seine
+364,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Sebastes melanops,beach seine
+365,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Artedius spp.,beach seine
+366,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Syngnathus leptorhynchus,beach seine
+367,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Cymatogaster aggregata,beach seine
+368,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Temessus cheiragonus,beach seine
+369,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Aulorhynchus flavidus,beach seine
+370,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Artedius harringtoni,beach seine
+371,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Clupea pallasii,beach seine
+372,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Hexagrammos stelleri,beach seine
+373,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Sebastes caurinus,beach seine
+374,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Anoplarchus insignis,beach seine
+375,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Artedius fenestralis,beach seine
+376,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Blepsias cirrhosus,beach seine
+377,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Cottidae,beach seine
+378,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Leptocottus armatus,beach seine
+379,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Myoxocephalus polyacanthocephalus,beach seine
+380,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Odontopyxis trispinosa,beach seine
+381,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Parophrys vetulus,beach seine
+382,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Platichthys stellatus,beach seine
+383,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Scorpaenidae,beach seine
+384,7/10/21,55.282137,-133.334028,REFU_A,Port Refugio,Sebastes maliger,beach seine
+385,7/11/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Pholis laeta,beach seine
+386,7/11/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Gasterosteus aculeatus,beach seine
+387,7/11/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Syngnathus leptorhynchus,beach seine
+388,7/11/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Lumpenus sagitta,beach seine
+389,7/11/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Aulorhynchus flavidus,beach seine
+390,7/11/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Cymatogaster aggregata,beach seine
+391,7/11/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Hemilepidotus spinosus,beach seine
+392,7/11/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Leptocottus armatus,beach seine
+393,7/11/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,"Cancer productus, Cancridae",beach seine
+394,7/11/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Hemilepidotus hemilepidotus,beach seine
+395,7/11/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Platichthys stellatus,beach seine
+396,7/11/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Sebastes auriculatus,beach seine
+397,7/11/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Hemilepidotus sp.,beach seine
+398,7/11/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Hexagrammos octogrammus,beach seine
+399,7/11/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Artedius spp.,beach seine
+400,7/11/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Citharichthys sordidus,beach seine
+401,7/11/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Enophrys bison,beach seine
+402,7/11/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Hexagrammos stelleri,beach seine
+403,7/11/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Lepidogobius lepidus,beach seine
+404,7/12/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Cymatogaster aggregata,beach seine
+405,7/12/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Lumpenus sagitta,beach seine
+406,7/12/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Gasterosteus aculeatus,beach seine
+407,7/12/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Pholis laeta,beach seine
+408,7/12/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Leptocottus armatus,beach seine
+409,7/12/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Syngnathus leptorhynchus,beach seine
+410,7/12/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Artedius spp.,beach seine
+411,7/12/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Parophrys vetulus,beach seine
+412,7/12/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Metacarcinus gracilis,beach seine
+413,7/12/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Temessus cheiragonus,beach seine
+414,7/12/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Hexagrammos stelleri,beach seine
+415,7/12/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Lepidogobius lepidus,beach seine
+416,7/12/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Artedius fenestralis,beach seine
+417,7/12/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Brachyistius frenatus,beach seine
+418,7/12/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Lepidopsetta spp.,beach seine
+419,7/12/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Oncorhynchus kisutch,beach seine
+420,7/13/21,55.7073,-133.342,NOSK_A,Nossuk Bay,Gasterosteus aculeatus,beach seine
+421,7/13/21,55.7073,-133.342,NOSK_A,Nossuk Bay,Cymatogaster aggregata,beach seine
+422,7/13/21,55.7073,-133.342,NOSK_A,Nossuk Bay,Aulorhynchus flavidus,beach seine
+423,7/13/21,55.7073,-133.342,NOSK_A,Nossuk Bay,Lumpenus sagitta,beach seine
+424,7/13/21,55.7073,-133.342,NOSK_A,Nossuk Bay,Pholis laeta,beach seine
+425,7/13/21,55.7073,-133.342,NOSK_A,Nossuk Bay,Syngnathus leptorhynchus,beach seine
+426,7/13/21,55.7073,-133.342,NOSK_A,Nossuk Bay,Artedius spp.,beach seine
+427,7/13/21,55.7073,-133.342,NOSK_A,Nossuk Bay,Hexagrammos stelleri,beach seine
+428,7/13/21,55.7073,-133.342,NOSK_A,Nossuk Bay,Blepsias cirrhosus,beach seine
+429,7/13/21,55.7073,-133.342,NOSK_A,Nossuk Bay,Leptocottus armatus,beach seine
+430,7/13/21,55.7073,-133.342,NOSK_A,Nossuk Bay,Temessus cheiragonus,beach seine
+431,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Pholis laeta,beach seine
+432,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Lumpenus sagitta,beach seine
+433,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Syngnathus leptorhynchus,beach seine
+434,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Gadus macrocephalus,beach seine
+435,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Gasterosteus aculeatus,beach seine
+436,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Artedius spp.,beach seine
+437,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Cymatogaster aggregata,beach seine
+438,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Leptocottus armatus,beach seine
+439,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Aulorhynchus flavidus,beach seine
+440,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Hexagrammos stelleri,beach seine
+441,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Temessus cheiragonus,beach seine
+442,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Lepidopsetta spp.,beach seine
+443,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Hexagrammos octogrammus,beach seine
+444,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Ophiodon elongatus,beach seine
+445,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Hemilepidotus sp.,beach seine
+446,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Ammodytes personatus,beach seine
+447,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Anoplarchus insignis,beach seine
+448,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Artedius fenestralis,beach seine
+449,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Blepsias cirrhosus,beach seine
+450,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Pallasina barbata,beach seine
+451,7/14/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Parophrys vetulus,beach seine
+452,7/21/21,55.49709,-133.17,NFEI_A,North Fish Egg Island,Zostera marina,hand
+453,7/22/21,55.59929,-133.16,SHIN_A,Shinaku Inlet,Zostera marina,hand
+454,7/23/21,55.25051,-132.883,NATZ_A,Natzuhini Bay,Zostera marina,hand
+455,7/24/21,55.282137,-133.334028,REFU_A,Port Refugio,Zostera marina,hand
+456,7/25/21,55.739816,-133.312022,GUKT_A,Guktu Bay,Zostera marina,hand
+457,7/26/21,55.7073,-133.342,NOSK_A,Nossuk Bay,Zostera marina,hand
+458,8/6/21,55.585855,-133.215512,BTRB_A,Big Tree Bay,Zostera marina,hand
+459,8/7/21,55.577767,-133.0941,KLWA_A,Klawock Airport,Zostera marina,hand
+460,8/8/21,55.517981,-133.158075,CLAM_A,Clam island,Zostera marina,hand
+461,8/9/21,55.50083,-133.1672,NFEI_B,North Fish Egg Island,Zostera marina,hand
+462,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Acrosiphinia arcta,hand
+463,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Agarum clathratum,hand
+464,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Callophyllis firma,hand
+465,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Callophyllis spp,hand
+466,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Ceramium pacificum,hand
+467,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Chondracanthus exasperatus,hand
+468,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Constantinea rosa-marina,hand
+469,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Corallina officinalis,hand
+470,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Desmarestia aculeata,hand
+471,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Dictyosiphon sp,hand
+472,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Farlowia mollis,hand
+473,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Fucus distichus,hand
+474,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Gracilaria - Gracilariopsis sp.,hand
+475,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Halosaccion glandiforme,hand
+476,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Neogastroclonium subarticulatum,hand
+477,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Neorhodomela aculeata,hand
+478,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Neorhodomela oregana,hand
+479,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Odonthalia flocossa,hand
+480,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Odonthalia setacea,hand
+481,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Osmundea spectabilis,hand
+482,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Palmaria mollis,hand
+483,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Polyneura latissima,hand
+484,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Pterosiphonia hamata,hand
+485,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Ptilota serrata,hand
+486,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Saccharina latissima,hand
+487,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Saccharina spp,hand
+488,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Sarcodiotheca gaudichaudii,hand
+489,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Schizymena pacifica,hand
+490,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Soranthera ulvoidea,hand
+491,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Sparlingia pertusa,hand
+492,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Stephanocystis geminata,hand
+493,8/11/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Ulva lactuca,hand
+494,8/11/21,55.236796,-131.750555,BOST_A,Bostwick Inlet,Cymatogaster aggregata,beach seine
+495,8/11/21,55.236796,-131.750555,BOST_A,Bostwick Inlet,Syngnathus leptorhynchus,beach seine
+496,8/11/21,55.236796,-131.750555,BOST_A,Bostwick Inlet,Artedius spp.,beach seine
+497,8/11/21,55.236796,-131.750555,BOST_A,Bostwick Inlet,Myoxocephalus polyacanthocephalus,beach seine
+498,8/11/21,55.236796,-131.750555,BOST_A,Bostwick Inlet,Brachyistius frenatus,beach seine
+499,8/11/21,55.236796,-131.750555,BOST_A,Bostwick Inlet,Pholis laeta,beach seine
+500,8/11/21,55.236796,-131.750555,BOST_A,Bostwick Inlet,Ammodytes personatus,beach seine
+501,8/11/21,55.236796,-131.750555,BOST_A,Bostwick Inlet,Apodichthys flavidus,beach seine
+502,8/11/21,55.236796,-131.750555,BOST_A,Bostwick Inlet,"Pugettia producta, Majidae",beach seine
+503,8/12/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Syngnathus leptorhynchus,beach seine
+504,8/12/21,55.236796,-131.750555,BOST_A,Bostwick Inlet,Zostera marina,hand
+505,8/12/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Aulorhynchus flavidus,beach seine
+506,8/12/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Cymatogaster aggregata,beach seine
+507,8/12/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Pholis laeta,beach seine
+508,8/12/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Metacarcinus magister,beach seine
+509,8/12/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Artedius spp.,beach seine
+510,8/12/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Oncorhynchus clarkii,beach seine
+511,8/12/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Temessus cheiragonus,beach seine
+512,8/12/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Hexagrammos stelleri,beach seine
+513,8/12/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Leptocottus armatus,beach seine
+514,8/12/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Parophrys vetulus,beach seine
+515,8/12/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Myoxocephalus polyacanthocephalus,beach seine
+516,8/12/21,55.219938,-131.735973,BOST_B,Bostwick Inlet,Enophrys bison,beach seine

@@ -21,13 +21,15 @@ fish18 <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3
 fish19 <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3A347cd81e-15a2-41f9-a73b-e344615548bf"), stringsAsFactors = FALSE, header = TRUE)
 
 fish20 <- read.csv("Data/fish_beach_seine_2020_RAW_unchecked.csv", stringsAsFactors = FALSE, header = TRUE)
+
+fish21 <- read.csv("../APECS_DM/Data/fish_mass_2021_derived.csv", stringsAsFactors = FALSE, header = TRUE)
 ```
 
 Libraries
 ```{r}
 library(dplyr)
 library(tidyr)
-
+library(lubridate)
 ```
 
 join together consistent data
@@ -59,6 +61,12 @@ fish_all <- fish %>%
   unite(bayID, bay_code:bay_sample)
 ```
 
+Unique species caught ever
+```{r}
+unique(fish_all$sp_code)
+```
+
+
 Average number of fish caught at a single site
 
 ```{r}
@@ -72,3 +80,53 @@ avg <- total %>%
   summarise(avg = mean(total))
 ```
 
+Want the all unique species caught, at how many sites, and what sites
+```{r}
+# add in fish21 
+
+fish.all <- fish21 %>%
+  mutate(bayID = bay_ID) %>%
+  dplyr::select(c(sp_code, date, start_time, end_time, slope, tide_height, tide_time, species_common, 
+                  species_scientific, taxon, fork_length, bayID, abundance)) %>%
+  full_join(fish_all) %>%
+  filter(taxon == "vertebrate" | taxon == "Vertebrata")
+
+
+species_occ_bysite <- fish.all %>%
+  mutate(year = year(as.Date(date))) %>%
+  group_by(sp_code) %>%
+  count(bayID)
+
+test <- fish.all %>%
+  mutate(year = year(as.Date(date))) %>%
+  group_by(bayID) %>%
+  count(sp_code)
+
+test2 <- test %>%
+  dplyr::select(-n) %>%
+  pivot_wider(names_from = "bayID", values_from = "sp_code")
+
+
+site.wide <- pivot_wider(species_occ_bysite, names_from = "bayID", values_from = "n", values_fill=0)
+#write.csv(site.wide, "Data/species_by_site.csv")
+
+
+species_occ_bysite %>%
+  group_by(sp_code) %>%
+  dplyr::summarise(site_n = sum(n)) %>%
+  left_join(site.wide)
+
+site_occ <- read.csv("Data/site_occ_by_species.csv", stringsAsFactors = FALSE, header = TRUE)
+
+library(unpivotr)
+
+
+site_occ <- site_occ[-1,]
+names(site_occ)
+colnames(site_occ)[XOTZ] <- "NATZ_A" # no finding xotz
+
+na.omit(site_occ)
+
+site_occ %>%
+  tidyr::unite("united", BAKE_A:KLWH_A, "_", na.rm = TRUE)
+```
